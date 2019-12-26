@@ -18,6 +18,9 @@ const Container = styled.div`
     /* 카드는 원래 빨간색이지만 첫번째 자식은 파란색으로 변경 */
     background-color: blue;
   }
+  ${Card}:last-child { 
+    background-color: purple;
+  }
 `;
 
 const Button = styled.button`
@@ -33,8 +36,9 @@ class App extends Component {
       // 하위 컴포넌트들에서 theme에 있는 속성들 사용 가능
       <ThemeProvider theme={theme}>
         <Container>
-          <Form />
-          <Form />
+          <Form text="I'm first" />
+          <Form text="I'm second" />
+          <Form text="I'm last" />
           <GlobalStyle />
         </Container>
       </ThemeProvider>
@@ -42,9 +46,10 @@ class App extends Component {
   }
 }
 
-const Form = () => (
-<Card>
-  <Button>Hello</Button>
-</Card>);
+const Form = ({text}) => (
+  <Card>
+    <Button>{text}</Button>
+  </Card>
+);
 
 export default App;
